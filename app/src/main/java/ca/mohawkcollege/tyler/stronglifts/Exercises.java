@@ -1,5 +1,6 @@
 package ca.mohawkcollege.tyler.stronglifts;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -87,7 +88,7 @@ try {
     //ON CLICK LISTENERS to pass exercises back to create routine activity
     Bundle b = getIntent().getExtras();
     //If bundle b.exercise is add
-    if(b.getString("exercise").equals("add")){
+    if(b.getString("exercise").equals("add") || b.getString("exercise").equals("addToView")){
         chestRoutines.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -170,6 +171,20 @@ try {
         //get selected exercise, put in bundle, return to create routine
         Bundle b = getIntent().getExtras();
         Intent i = new Intent(this, createRoutine.class);
+
+        //small IF block to add a new exercise to existing routine from the ViewRoutine class
+        if(b.getString("exercise").equals("addToView")){
+            i = new Intent(this, ViewRoutine.class);
+            DBWorkouts workouts = new DBWorkouts(this);
+            SQLiteDatabase db = workouts.getWritableDatabase();
+            ContentValues v = new ContentValues();
+            v.put("Exercise", exercise);
+            v.put("Sets", 0);
+            db.insert(b.getString("routine"), null, v);
+            db.close();
+            i.putExtras(b);
+            startActivity(i);
+        }
 
         if(b.getStringArray("exerciseArray") == null){
             String[] exerciseArray = {exercise};
@@ -268,6 +283,12 @@ try {
 
 
                 break;
+            //creates a dialog. Dialog creates new exercise
+            case R.id.action_add:
+                exerciseDialog dialog = new exerciseDialog();
+
+                dialog.show(getSupportFragmentManager(), "dialog");
+                break;
             default:
                 Intent i = new Intent(this, MainActivity.class);
 
@@ -279,6 +300,10 @@ try {
                     //that activity with the bundle
                     if(b.getString("exercise").equals("add")){
                         i = new Intent(this, createRoutine.class);
+                        i.putExtras(b);
+                    }
+                    if(b.getString("exercise").equals("addToView")){
+                        i = new Intent(this, ViewRoutine.class);
                         i.putExtras(b);
                     }
 
@@ -335,11 +360,6 @@ try {
 
     }
 
-    //creates a dialog. Dialog creates new exercise
-    public void create(View view) {
-        exerciseDialog dialog = new exerciseDialog();
 
-        dialog.show(getSupportFragmentManager(), "dialog");
 
-    }
 }

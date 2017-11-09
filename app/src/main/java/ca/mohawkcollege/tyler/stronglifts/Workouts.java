@@ -44,8 +44,6 @@ public class Workouts extends AppCompatActivity {
         //Hide button when user wants to start a workout
         //Workouts.class is always started with a bundle
         if (b.get("Workouts").equals("Select")) {
-            Button create = (Button) findViewById(R.id.create);
-            create.setVisibility(View.GONE);
             setTitle("Start A Workout");
         }
 
@@ -231,14 +229,6 @@ public class Workouts extends AppCompatActivity {
                 String[] armsResults = Muscles("Arms");
                 String[] coreResults = Muscles("Core");
 
-                Arrays.sort(fbResults);
-                Arrays.sort(chestResults);
-                Arrays.sort(backResults);
-                Arrays.sort(legResults);
-                Arrays.sort(shoulderResults);
-                Arrays.sort(armsResults);
-                Arrays.sort(coreResults);
-
                 //full body
                 ArrayAdapter adpter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, fbResults);
                 fbRoutines.setAdapter(adpter);
@@ -285,6 +275,11 @@ public class Workouts extends AppCompatActivity {
 
 
             break;
+        case R.id.action_add:
+            routineDialog dialog = new routineDialog();
+
+            dialog.show(getSupportFragmentManager(), "dialog");
+            break;
         default:
             Intent i = new Intent(this, MainActivity.class);
             startActivity(i);
@@ -309,6 +304,7 @@ public class Workouts extends AppCompatActivity {
 
                     db.execSQL(sqlDelete);
                     db.execSQL(dropWorkout);
+                    db.close();
                     //Log.i("log",sup + " was selected");
                 }
             }
@@ -358,13 +354,6 @@ public class Workouts extends AppCompatActivity {
         params.height = totalItemsHeight + totalDividersHeight;
         listView.setLayoutParams(params);
         listView.requestLayout();
-
-    }
-
-    public void create(View view) {
-        routineDialog dialog = new routineDialog();
-
-        dialog.show(getSupportFragmentManager(), "dialog");
 
     }
 

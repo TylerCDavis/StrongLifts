@@ -35,7 +35,7 @@ public class DBWorkouts extends SQLiteOpenHelper {
         db.execSQL(Sets);
         db.execSQL(History);
         db.execSQL(routine);
-
+db.close();
     }
 
     @Override

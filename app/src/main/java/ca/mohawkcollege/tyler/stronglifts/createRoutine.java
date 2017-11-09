@@ -63,13 +63,16 @@ public class createRoutine extends AppCompatActivity {
         String n = "\""+ b.getString("routine") + "\"";
         String newTable ="CREATE TABLE "+ n + " ( _id INTEGER PRIMARY KEY, Exercise TEXT, sets INTEGER)";
         db.execSQL(newTable);
+        db.close();
 
         for(String s: b.getStringArray("exerciseArray")){
+            db = dbhelper.getWritableDatabase();
             v.put("Exercise", s);
             v.put("Sets", 0);
             db.insert(b.getString("routine"), null, v);
+            db.close();
         }
-        db.close();
+
         Intent i = new Intent(this, MainActivity.class);
         startActivity(i);
     }

@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity{
                         dbb.execSQL("DROP TABLE IF EXISTS History");
                         dbb.execSQL("DROP TABLE IF EXISTS s5X5");
                         Log.d("log", "Database Deleted");
-
+dbb.close();
                         finish();
                         startActivity(getIntent());
                         //i = new Intent(view.getContext(), Settings.class);
@@ -150,48 +150,29 @@ public class MainActivity extends AppCompatActivity{
         DBWorkouts dbhelper = new DBWorkouts(this);
         SQLiteDatabase db = dbhelper.getReadableDatabase();
 
-try {
-    Cursor cursor = db.rawQuery("SELECT * FROM Workouts", null);
+    try {
+        Cursor cursor = db.rawQuery("SELECT * FROM Workouts", null);
 
-    Context cont = getApplicationContext();
-    CharSequence text = "database exists";
-    int duration = Toast.LENGTH_SHORT;
-    Toast toast = Toast.makeText(cont, text, duration);
-    toast.show();
+        Context cont = getApplicationContext();
+        CharSequence text = "database exists";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(cont, text, duration);
+        toast.show();
 
-}catch(Exception e){
+    }catch(Exception e){
 
-    Context cont = getApplicationContext();
-    CharSequence text = "Creating Database";
-    int duration = Toast.LENGTH_SHORT;
-    Toast toast = Toast.makeText(cont, text, duration);
-    toast.show();
-//This needs to be commented out for new devices.
-dbhelper.onCreate(db);
+        Context cont = getApplicationContext();
+        CharSequence text = "Creating Database";
+        int duration = Toast.LENGTH_SHORT;
+        Toast toast = Toast.makeText(cont, text, duration);
+        toast.show();
+    //This needs to be commented out for new devices.
+        dbhelper.onCreate(db);
 
-    popDB newDB = new popDB();
-    newDB.populateDB(this);
-}
-        //if DB Workouts has no data
-         //if(!cursor.moveToFirst()){
-        //populate database
-
-
-
-        //Log.d("log", "doing insert");
-
-
-
-        //}else{
-            //refresh the DB if changes are made to the pre populated dat
-            //DBWorkouts helper = new DBWorkouts(this);
-            //SQLiteDatabase dbb = helper.getWritableDatabase();
-            //dbhelper.onUpgrade(dbb, 1, 1);
-
-            //Used for testing.
-
-        // }
-
+        popDB newDB = new popDB();
+        newDB.populateDB(this);
+        db.close();
+    }
     }
 
     //Simple function to open and close nav drawer
