@@ -30,7 +30,7 @@ public class ViewRoutine extends AppCompatActivity {
         topBar.setDisplayHomeAsUpEnabled(true);
 
         Bundle b = getIntent().getExtras();
-        setTitle(b.getString("routine"));
+        setTitle(b.getString("routine").replace("_"," "));
 
         String[] results = Exercises(b.getString("routine"));
 
@@ -123,7 +123,9 @@ public class ViewRoutine extends AppCompatActivity {
 
                     DBWorkouts workouts = new DBWorkouts(this);
                     SQLiteDatabase db = workouts.getWritableDatabase();
-                    String sqlDelete = "DELETE FROM " + b.getString("routine")  +" where Exercise = '"+sup+"'";
+                    String n = b.getString("routine");
+                    n = n.replace(" ", "_");
+                    String sqlDelete = "DELETE FROM " + n +" where Exercise = '"+sup+"'";
 
                     db.execSQL(sqlDelete);
                     db.close();

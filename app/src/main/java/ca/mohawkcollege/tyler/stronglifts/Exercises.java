@@ -174,13 +174,15 @@ try {
 
         //small IF block to add a new exercise to existing routine from the ViewRoutine class
         if(b.getString("exercise").equals("addToView")){
+            String n = b.getString("routine");
+            n = n.replace(" ","_");
             i = new Intent(this, ViewRoutine.class);
             DBWorkouts workouts = new DBWorkouts(this);
             SQLiteDatabase db = workouts.getWritableDatabase();
             ContentValues v = new ContentValues();
             v.put("Exercise", exercise);
             v.put("Sets", 0);
-            db.insert(b.getString("routine"), null, v);
+            db.insert(n, null, v);
             db.close();
             i.putExtras(b);
             startActivity(i);

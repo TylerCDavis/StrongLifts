@@ -117,6 +117,7 @@ public class Workouts extends AppCompatActivity {
                             if(flag){
                                 String routineName = bodyRoutines.getItemAtPosition(position).toString();
                                 //Start ViewRoutine activity and pass routineName for DB read
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
 
@@ -128,6 +129,7 @@ public class Workouts extends AppCompatActivity {
                             if(flag){
                                 String routineName = chestRoutines.getItemAtPosition(position).toString();
                             //Start ViewRoutine activity and pass routineName for DB read
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
@@ -137,6 +139,7 @@ public class Workouts extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(flag){
                                 String routineName = backRoutines.getItemAtPosition(position).toString();
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
@@ -146,6 +149,7 @@ public class Workouts extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(flag){
                                 String routineName = legRoutines.getItemAtPosition(position).toString();
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
@@ -155,6 +159,7 @@ public class Workouts extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(flag){
                                 String routineName = shoulderRoutines.getItemAtPosition(position).toString();
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
@@ -164,6 +169,7 @@ public class Workouts extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(flag){
                                 String routineName = armRoutines.getItemAtPosition(position).toString();
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
@@ -173,6 +179,7 @@ public class Workouts extends AppCompatActivity {
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                             if(flag){
                                 String routineName = coreRoutines.getItemAtPosition(position).toString();
+                                routineName = routineName.replace(" ","_");
                                 viewRoutine(routineName);
                             }
                         }
