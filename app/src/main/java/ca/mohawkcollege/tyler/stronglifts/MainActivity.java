@@ -98,6 +98,7 @@ public class MainActivity extends AppCompatActivity{
                         dbb.execSQL("DROP TABLE IF EXISTS Sets");
                         dbb.execSQL("DROP TABLE IF EXISTS History");
                         dbb.execSQL("DROP TABLE IF EXISTS s5X5");
+                        dbb.execSQL("DROP TABLE IF EXISTS Chest_Day");
                         Log.d("log", "Database Deleted");
 dbb.close();
                         finish();

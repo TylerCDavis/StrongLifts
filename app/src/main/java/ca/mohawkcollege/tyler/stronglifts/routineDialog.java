@@ -68,7 +68,9 @@ public class routineDialog extends DialogFragment {
                    // db.insert("Workouts", null, v);
 
                     Bundle b = new Bundle();
-                    b.putString("routine", routine.getText().toString());
+                    String r = routine.getText().toString();
+                    r=r.replace(" ", "_");
+                    b.putString("routine", r);
                     b.putString("group", group.getSelectedItem().toString());
                     //!!for testing
                     Intent i = new Intent(getActivity(), createRoutine.class);

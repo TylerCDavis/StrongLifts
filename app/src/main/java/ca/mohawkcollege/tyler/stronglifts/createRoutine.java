@@ -60,7 +60,8 @@ public class createRoutine extends AppCompatActivity {
         //create the table to hold all user selected exercises
         db = dbhelper.getWritableDatabase();
         v = new ContentValues();
-        String n = "\""+ b.getString("routine") + "\"";
+        String n =  b.getString("routine");
+        n=n.replace(" ", "_");
         String newTable ="CREATE TABLE "+ n + " ( _id INTEGER PRIMARY KEY, Exercise TEXT, sets INTEGER)";
         db.execSQL(newTable);
         db.close();

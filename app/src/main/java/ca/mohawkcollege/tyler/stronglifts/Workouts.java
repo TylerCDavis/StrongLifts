@@ -289,6 +289,7 @@ public class Workouts extends AppCompatActivity {
 }
     //Deletes multiple selected exercises
     public void delete(ListView routine){
+
         SparseBooleanArray checkedItems = routine.getCheckedItemPositions();
         if (checkedItems != null) {
             for (int i=0; i<checkedItems.size(); i++) {
@@ -299,8 +300,9 @@ public class Workouts extends AppCompatActivity {
 
                     DBWorkouts workouts = new DBWorkouts(this);
                     SQLiteDatabase db = workouts.getWritableDatabase();
+                    sup=sup.replace(" ", "_");
                     String sqlDelete = "DELETE FROM Workouts where Routine = '"+sup+"'";
-                    String dropWorkout = "DROP TABLE IF EXISTS "+ sup + "";
+                    String dropWorkout = "DROP TABLE IF EXISTS "+ sup;
 
                     db.execSQL(sqlDelete);
                     db.execSQL(dropWorkout);
@@ -326,6 +328,7 @@ public class Workouts extends AppCompatActivity {
 
         while (c.moveToNext()) {
             results[z] = c.getString(c.getColumnIndex("Routine"));
+            results[z] = results[z].replace("_"," ");
             z++;
         }
         db.close();
