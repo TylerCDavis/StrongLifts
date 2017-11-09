@@ -1,0 +1,47 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ca.mohawkcollege.tyler.stronglifts.routineDialog">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:text="Routine Name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:layout_marginTop="10dp"
+        android:padding="5dp"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Name"
+        android:ems="10"
+        android:id="@+id/editText"
+
+        android:layout_below="@+id/textView"/>
+
+    <TextView
+        android:text="Muscle Group:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:textColor="#000000"
+        android:id="@+id/textView2"
+        android:padding="5dp"
+        android:layout_below="@+id/editText"/>
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner"
+        android:entries="@array/groups"
+
+        android:layout_below="@+id/textView2"/>
+
+</RelativeLayout>

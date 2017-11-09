@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_workouts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="ca.mohawkcollege.tyler.stronglifts.Workouts">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:text="Create New Workout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:onClick="create"
+                android:id="@+id/create"
+                />
+
+            <TextView
+                android:text="Full Body"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/txtFullBody"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"/>
+
+
+                <ListView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/listBodyRoutines"
+                    android:layout_alignParentStart="true"
+                    android:scrollbars="none"
+                    android:headerDividersEnabled="false"
+                    />
+
+            <TextView
+                android:text="Chest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/txtChest"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listChestRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false"
+                />
+
+            <TextView
+                android:text="Back"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/txtBack"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listBackRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false"
+                />
+            <TextView
+                android:text="Legs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/txtLegs"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listLegsRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false"
+                />
+
+            <TextView
+                android:text="Shoulders"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/txtShoulders"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"/>
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listShouldersRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false"
+                />
+            <TextView
+                android:text="Arms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"
+                android:id="@+id/txtArms" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listArmsRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false"
+                />
+
+            <TextView
+                android:text="Core"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:fontFamily="Times New Roman"
+                android:textColor="#336"
+                android:textStyle="normal|bold"
+                android:id="@+id/txtCore" />
+
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/listCoreRoutines"
+                android:layout_alignParentStart="true"
+                android:scrollbars="none"
+                android:headerDividersEnabled="false" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>
