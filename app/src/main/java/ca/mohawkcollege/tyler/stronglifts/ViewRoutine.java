@@ -1,5 +1,6 @@
 package ca.mohawkcollege.tyler.stronglifts;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -12,8 +13,10 @@ import android.util.SparseBooleanArray;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -62,7 +65,9 @@ public class ViewRoutine extends AppCompatActivity {
     //used to create a menu with a trash can icon
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         Bundle b = getIntent().getExtras();
+
 
         if (b.get("Workouts").equals("View")) {
             MenuInflater inflater = getMenuInflater();
@@ -70,6 +75,40 @@ public class ViewRoutine extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    public void save(View view){
+
+        Bundle b = getIntent().getExtras();
+        DBWorkouts dbhelper = new DBWorkouts(view.getContext());
+        SQLiteDatabase db = dbhelper.getWritableDatabase();
+
+        //Insert routine in workouts
+        ContentValues v = new ContentValues();
+        v.put("Routine", b.getString("routine"));
+        v.put("MuscleGroup", b.getString("group"));
+        db.insert("Workouts", null, v);
+        db.close();
+
+        //create the table to hold all user selected exercises
+        db = dbhelper.getWritableDatabase();
+        v = new ContentValues();
+        String n =  b.getString("routine");
+        n=n.replace(" ", "_");
+        String newTable ="CREATE TABLE "+ n + " ( _id INTEGER PRIMARY KEY, Exercise TEXT, sets INTEGER)";
+        db.execSQL(newTable);
+        db.close();
+
+        for(String s: b.getStringArray("exerciseArray")){
+            db = dbhelper.getWritableDatabase();
+            v.put("Exercise", s);
+            v.put("Sets", 0);
+            db.insert(b.getString("routine"), null, v);
+            db.close();
+        }
+
+        Intent i = new Intent(this, MainActivity.class);
+        startActivity(i);
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
@@ -120,6 +159,7 @@ public class ViewRoutine extends AppCompatActivity {
                             checkedItems.keyAt(i)).toString();
                     //change this to delete statement
                     Bundle b =getIntent().getExtras();
+
 
                     DBWorkouts workouts = new DBWorkouts(this);
                     SQLiteDatabase db = workouts.getWritableDatabase();

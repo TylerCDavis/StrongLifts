@@ -318,6 +318,7 @@ try {
     }
     //Deletes multiple selected exercises
     public void delete(ListView routine){
+
         SparseBooleanArray checkedItems = routine.getCheckedItemPositions();
         if (checkedItems != null) {
             for (int i=0; i<checkedItems.size(); i++) {

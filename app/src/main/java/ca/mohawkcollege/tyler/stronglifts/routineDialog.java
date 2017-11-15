@@ -72,6 +72,7 @@ public class routineDialog extends DialogFragment {
                     r=r.replace(" ", "_");
                     b.putString("routine", r);
                     b.putString("group", group.getSelectedItem().toString());
+
                     //!!for testing
                     Intent i = new Intent(getActivity(), createRoutine.class);
                     i.putExtras(b);
